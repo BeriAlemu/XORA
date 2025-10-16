@@ -1,21 +1,45 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link as LinkScroll } from "react-scroll";
 import clsx from "clsx";
 
-const NavLink = ({ title }) => (
-  <LinkScroll
-    className="base-bold text-p4 uppercase transition-colors duration 
-    cursor-pointer hover:text-p1 max-lg:mt-4 max-lg:h5"
-  >
-    {title}
-  </LinkScroll>
-);
-
 function Header() {
   const [isOpen, setIsOpen] = useState(false);
+  const [hasScrolled, SetHasScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      SetHasScrolled(window.scrollY > 32);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+  const NavLink = ({ title }) => (
+    <LinkScroll
+      className="base-bold text-p4 uppercase transition-colors duration 
+    cursor-pointer hover:text-p1 max-lg:mt-4 max-lg:h5"
+      onClick={() => setIsOpen(false)}
+      to={title}
+      spy
+      smooth
+      offset={-100}
+      activeClass="nav-active"
+    >
+      {title}
+    </LinkScroll>
+  );
 
   return (
-    <header className="fixed py-10 top-0 left-0 z-50 w-full">
+    <header
+      className={clsx(
+        "fixed py-10 top-0 left-0 z-50 w-full transition-all duration-500 max-lg:py-4",
+        hasScrolled && "py-2 bg-black-100 backdrop-blur-[8px]"
+      )}
+    >
       <div className="h-14 container flex items-center mac-lg:px-5">
         <a className="lg:hidden flex-1 cursor-pointer z-2 ">
           <img src="public/images/xora.svg" alt="" width={115} height={55} />
@@ -42,7 +66,7 @@ function Header() {
                 <li className="nav-logo">
                   <LinkScroll
                     to="hero"
-                    offset={-100}
+                    offset={-250}
                     spy
                     smooth
                     className={clsx(
@@ -65,8 +89,10 @@ function Header() {
                 </li>
               </ul>
             </nav>
-            <div className="lg:hidden block absolute top-1/2 left-0 w-[960px] h-[380px] 
-            translate-x-[-290px] -translate-y-1/2 rotate-90">
+            <div
+              className="lg:hidden block absolute top-1/2 left-0 w-[960px] h-[380px] 
+            translate-x-[-290px] -translate-y-1/2 rotate-90"
+            >
               <img
                 src="/images/bg-outlines.svg"
                 alt="outline "
