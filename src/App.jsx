@@ -1,8 +1,10 @@
+import Download from "./sections/Download";
 import Faq from "./sections/faq";
 import Features from "./sections/Features";
 import Header from "./sections/Header";
 import Hero from "./sections/Hero";
 import Pricing from "./sections/Pricing";
+import Testimonials from "./sections/Testimonials";
 
 function App (){
   return(
@@ -12,6 +14,8 @@ function App (){
         <Features />
         <Pricing />
         <Faq />
+        <Testimonials />
+        <Download />
     </main>
   )
 }
