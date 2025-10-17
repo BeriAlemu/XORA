@@ -11,9 +11,10 @@
   },
   "dependencies": {
     "clsx": "^2.1.1",
-    "react": "^19.1.1",
+    "react": "^16.14.0",
+    "react-collapse": "^5.1.1",
     "react-countup": "^6.5.3",
-    "react-dom": "^19.1.1",
+    "react-dom": "^16.14.0",
     "react-scroll": "^1.9.3",
     "react-slidedown": "^2.4.7"
   },
