@@ -42,7 +42,7 @@ function Header() {
     >
       <div className="h-14 container flex items-center mac-lg:px-5">
         <a className="lg:hidden flex-1 cursor-pointer z-2 ">
-          <img src="public/images/xora.svg" alt="" width={115} height={55} />
+          <img src="/images/xora.svg" alt="" width={115} height={55} />
         </a>
 
         <div
